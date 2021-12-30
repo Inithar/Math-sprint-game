@@ -1,0 +1,448 @@
+@import url('https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap');
+
+:root {
+	--first-color: rgb(34, 40, 49);
+	--second-color: rgb(0, 173, 181);
+	--selected-color: rgba(0, 173, 181, 0.4);
+	--hover-color: rgb(5, 209, 219);
+	--white: rgb(238, 238, 238);
+	--success: rgb(13, 134, 2);
+	--wrong: rgb(185, 21, 21);
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	min-height: 100vh;
+	background: #232526;
+	background: -webkit-linear-gradient(to top, #414345, #232526);
+	background: linear-gradient(to top, #414345, #232526);
+	overflow: hidden;
+}
+
+.game-container {
+	margin-top: 3rem;
+	width: 53rem;
+	height: 65rem;
+	background-color: var(--white);
+	border: 1px solid var(--first-color);
+	box-shadow: 0 15px 20px -5px var(--first-color);
+	user-select: none;
+}
+
+.wrapper {
+	margin: 0.5rem auto 1rem;
+	height: 60rem;
+}
+
+.footer {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 7rem;
+	background-color: var(--first-color);
+}
+
+.btn {
+	cursor: pointer;
+	height: 4rem;
+	border-radius: 0.7rem;
+	font-size: 2.5rem;
+	color: black;
+	font-weight: bold;
+	border: none;
+}
+
+.start-btn,
+.play-again-btn,
+.settings-btn {
+	width: 90%;
+	background-color: var(--second-color);
+	transition: background-color 0.5s;
+
+	&:hover {
+		background-color: var(--hover-color);
+	}
+}
+
+.settings-icon {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	padding: 1rem;
+	font-size: 2.5rem;
+	transition: color 0.3s;
+	cursor: pointer;
+
+	&:hover {
+		color: var(--white);
+	}
+}
+
+.selected-label {
+	background-color: var(--selected-color);
+}
+
+/* ------------------------------ Header ------------------------------ */
+.header {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 8rem;
+	font-size: 1.8rem;
+	letter-spacing: 1px;
+	text-shadow: 1px 1px 1px black;
+	color: var(--first-color);
+	background-color: var(--second-color);
+}
+
+/* ------------------------------ Settings ------------------------------ */
+
+.settings {
+	position: absolute;
+	inset: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	&__container {
+		position: relative;
+		width: 70rem;
+		height: 55rem;
+		background-color: var(--white);
+	}
+
+	&__header {
+		height: 7rem;
+		font-size: 2.2rem;
+
+		.settings-icon {
+			right: 1rem;
+		}
+	}
+
+	&__content {
+		justify-content: space-evenly;
+
+		.setting-title {
+			margin: 2rem 0;
+			font-size: 2.3rem;
+			text-align: center;
+
+			&:first-child {
+				margin-top: 3rem;
+			}
+		}
+
+		input {
+			opacity: 0;
+			width: 100%;
+			height: 100%;
+			cursor: pointer;
+		}
+
+		.form-box {
+			display: flex;
+			justify-content: space-evenly;
+
+			&__color-radio {
+				height: 5rem;
+				width: 5rem;
+				background-color: rgb(0, 173, 181);
+				box-shadow: 0 0 6px rgb(0, 173, 181);
+				border-radius: 50%;
+
+				&--color2 {
+					background-color: rgb(191, 162, 219);
+					box-shadow: 0 0 6px rgb(191, 162, 219);
+				}
+
+				&--color3 {
+					background-color: rgb(255, 169, 49);
+					box-shadow: 0 0 6px rgb(255, 169, 49);
+				}
+			}
+
+			&__difficulty-radio,
+			&__math-operation-radio {
+				position: relative;
+				margin: 1rem;
+				width: 25%;
+				height: 3rem;
+				border: 2px solid var(--first-color);
+				border-radius: 0.7rem;
+			}
+
+			&__difficulty-label,
+			&__math-operation-label {
+				position: absolute;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				height: 100%;
+				font-size: 1.7rem;
+			}
+
+			&__math-operation-radio {
+				width: 20%;
+			}
+		}
+	}
+
+	.footer {
+		position: absolute;
+		bottom: 0;
+	}
+}
+
+.display {
+	display: flex;
+}
+
+.display-none {
+	display: none;
+}
+
+/* ------------------------------ Questions Page ------------------------------ */
+.question-container {
+	position: relative;
+	top: 4rem;
+
+	.radio-container {
+		position: relative;
+		margin: 2.5rem;
+		width: 90%;
+		height: 7.5rem;
+		border: 2px solid var(--first-color);
+		border-radius: 0.7rem;
+
+		&__label {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-size: 3rem;
+		}
+
+		&__input {
+			opacity: 0;
+			width: 100%;
+			height: 7.5rem;
+			cursor: pointer;
+			z-index: 2;
+		}
+	}
+}
+
+.question-footer {
+	top: 7.4rem;
+}
+
+/* ------------------------------ Countdown Page ------------------------------ */
+.countdown {
+	margin-top: 45%;
+	font-size: 10rem;
+	text-align: center;
+	user-select: none;
+}
+
+/* ------------------------------ Ganme Page ------------------------------ */
+
+.item-container {
+	position: relative;
+	height: 55.2rem;
+	overflow-y: scroll;
+	-ms-overflow-style: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	.item {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		height: 6rem;
+		margin: 0 5rem;
+		user-select: none;
+
+		&__equation {
+			margin: 1.6rem 0;
+			font-size: 3.5rem;
+			font-weight: bold;
+			z-index: 1;
+		}
+	}
+
+	.height-240 {
+		height: 24rem;
+		width: 100%;
+	}
+
+	.height-500 {
+		height: 50rem;
+		width: 100%;
+	}
+
+	.selected-item {
+		position: fixed;
+		top: 36rem;
+		width: 52.9rem;
+		height: 6rem;
+		background: var(--selected-color);
+	}
+}
+
+.item-footer {
+	top: -5.9rem;
+	z-index: 2;
+
+	.wrong-btn,
+	.right-btn {
+		width: 42.5%;
+		color: var(--white);
+		font-weight: normal;
+		transition: background-color 0.5s;
+	}
+
+	.wrong-btn {
+		background: var(--wrong);
+		margin-right: 2.5rem;
+
+		&:hover {
+			background-color: rgb(226, 27, 27);
+		}
+	}
+
+	.right-btn {
+		background: var(--success);
+
+		&:hover {
+			background-color: rgb(18, 175, 4);
+		}
+	}
+}
+
+/* ------------------------------ Score Page ------------------------------ */
+.score-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 60rem;
+	word-spacing: 8px;
+
+	&__title {
+		font-size: 4.5rem;
+	}
+
+	&__final-time {
+		font-size: 10rem;
+		margin: 0;
+		color: var(--success);
+	}
+
+	&__base-time {
+		margin-top: 10rem;
+		margin-bottom: 0;
+		font-size: 3.5rem;
+	}
+
+	&__penalty-time {
+		margin-top: 2rem;
+		font-size: 3.5rem;
+		color: var(--wrong);
+	}
+}
+
+.score-footer {
+	position: relative;
+	top: -9rem;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 9rem;
+}
+
+.mobile-message {
+	display: none;
+}
+
+@media screen and (max-width: 576px) {
+	.game-container {
+		display: none;
+	}
+
+	.mobile-message {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100vh;
+		color: white;
+		background-color: black;
+	}
+}
+
+@media screen and (min-height: 900px) {
+	.game-container {
+		margin-top: 10rem;
+		height: 75rem;
+	}
+
+	.footer {
+		height: 9rem;
+	}
+
+	.btn {
+		height: 5rem;
+	}
+
+	.header {
+		height: 10rem;
+	}
+
+	.question-container {
+		top: 6.5rem;
+	}
+
+	.question-footer {
+		top: 13.4rem;
+	}
+
+	.item-container {
+		.item,
+		.selected-item {
+			height: 8rem;
+		}
+
+		.selected-item {
+			top: 44.3rem;
+		}
+	}
+
+	.item-footer {
+		top: 0.1rem;
+	}
+
+	.score-footer {
+		top: -3rem;
+	}
+}
